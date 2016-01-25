@@ -31,7 +31,7 @@ class EducationTest extends PHPUnit_Framework_TestCase
     public function testAddData()
     {
         $data = [
-            'schoolName'    => '104社會大學',
+            'schoolName'    => '社會大學',
             'majorName'     => '資訊管理',
             'majorCat'      => '商管學科類',
             'area'          => '亞洲',
@@ -52,7 +52,7 @@ class EducationTest extends PHPUnit_Framework_TestCase
     public function testUpdateData()
     {
         $data = [
-            'schoolName'    => '104社會大學',
+            'schoolName'    => '社會大學',
             'majorName'     => '資訊管理',
             'majorCat'      => '商管學科類',
             'area'          => '亞洲',
@@ -76,7 +76,7 @@ class EducationTest extends PHPUnit_Framework_TestCase
             [
                 'uid'           => '123',
                 'eduid'         => 456,
-                'schoolName'    => '104社會大學',
+                'schoolName'    => '社會大學',
                 'majorName'     => '資訊管理',
                 'majorCat'      => '商管學科類',
                 'area'          => '亞洲',
