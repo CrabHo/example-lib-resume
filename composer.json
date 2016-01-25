@@ -32,9 +32,9 @@
     "scripts": {
         "test": [
             "php vendor/bin/phpcs",
-            "php vendor/bin/phpunit"
+            "php vendor/bin/phpunit -c ./build/phpunit.xml"
         ],
-        "phpunit": "php vendor/bin/phpunit",
+        "phpunit": "php vendor/bin/phpunit -c ./build/phpunit.xml",
         "phpcs": "php vendor/bin/phpcs"
     }
 }
