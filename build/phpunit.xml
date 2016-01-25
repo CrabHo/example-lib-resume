@@ -7,7 +7,7 @@
          beStrictAboutTestsThatDoNotTestAnything="true"
          beStrictAboutChangesToGlobalState="true"
          beStrictAboutOutputDuringTests="true"
-         colors="true"
+         colors="false"
          convertErrorsToExceptions="true"
          convertNoticesToExceptions="true"
          convertWarningsToExceptions="true"
@@ -23,15 +23,15 @@
 
     <logging>
         <log type="coverage-html" target="coverage"/>
-        <log type="coverage-clover" target="logs/clover.xml"/>
-        <log type="coverage-crap4j" target="logs/crap4j.xml"/>
-        <log type="coverage-xml" target="logs/coverage"/>
-        <log type="junit" target="logs/junit.xml"/>
+        <log type="coverage-clover" target="./logs/clover.xml"/>
+        <log type="coverage-crap4j" target="./logs/crap4j.xml"/>
+        <log type="coverage-xml" target="./logs/coverage"/>
+        <log type="junit" target="./logs/junit.xml"/>
     </logging>
 
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">../src</directory>
+            <directory suffix=".php">./src</directory>
             <exclude>
                 <file>../vendor/autoload.php</file>
             </exclude>
