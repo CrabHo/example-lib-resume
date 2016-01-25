@@ -1,0 +1,40 @@
+{
+    "name": "bigc/resume",
+    "description": "Example resume library",
+    "keywords": ["Example team","resume","lib"],
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Crab Ho",
+            "email": "crab.ho@example.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.0",
+        "respect/validation" : "1.0.3",
+        "theorchard/monolog-cascade" : "0.3.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.5",
+        "squizlabs/php_codesniffer": "^2.5"
+    },
+    "autoload": {
+        "psr-4" : {
+            "bigc\\resume\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "bigc\\resume\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": [
+            "php vendor/bin/phpcs",
+            "php vendor/bin/phpunit"
+        ],
+        "phpunit": "php vendor/bin/phpunit",
+        "phpcs": "php vendor/bin/phpcs"
+    }
+}
