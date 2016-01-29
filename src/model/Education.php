@@ -8,37 +8,6 @@ class Education
     {
     }
 
-    public function getDatas($uid)
-    {
-        $res = ['result' =>
-            [
-                'uid'           => $uid,
-                'eduid'         => 1,
-                'schoolName'    => '1社會大學',
-                'majorName'     => '1資訊管理',
-                'majorCat'      => '1商管學科類',
-                'area'          => '1亞洲',
-                'schoolCountry' => '1台灣',
-                'startDate'     => '2013/9',
-                'endDate'       => '2015/6',
-                'degreeStatus'  => 1
-            ],
-            [
-                'uid'           => $uid,
-                'eduid'         => 2,
-                'schoolName'    => '2社會大學',
-                'majorName'     => '2資訊管理',
-                'majorCat'      => '2商管學科類',
-                'area'          => '2亞洲',
-                'schoolCountry' => '2台灣',
-                'startDate'     => '2013/9',
-                'endDate'       => '2015/6',
-                'degreeStatus'  => 1
-            ]
-        ];
-        return $res;
-    }
-
     /**
     *
     *   @param  Number      $uid    UserId
@@ -48,21 +17,55 @@ class Education
     */
     public function getData($uid, $eduid)
     {
-        //QueryDB
-        $res = ['result' =>
-            [
-                'uid'           => $uid,
-                'eduid'         => $eduid,
-                'schoolName'    => '社會大學',
-                'majorName'     => '資訊管理',
-                'majorCat'      => '商管學科類',
-                'area'          => '亞洲',
-                'schoolCountry' => '台灣',
-                'startDate'     => '2013/9',
-                'endDate'       => '2015/6',
-                'degreeStatus'  => 1
-            ]
-        ];
+        if(empty($eduid))
+        {
+            $res = ['result' =>
+                [
+                    [
+                        'uid'           => $uid,
+                        'eduid'         => 1,
+                        'schoolName'    => '1社會大學',
+                        'majorName'     => '1資訊管理',
+                        'majorCat'      => '1商管學科類',
+                        'area'          => '1亞洲',
+                        'schoolCountry' => '1台灣',
+                        'startDate'     => '2013/9',
+                        'endDate'       => '2015/6',
+                        'degreeStatus'  => 1
+                    ],
+                    [
+                        'uid'           => $uid,
+                        'eduid'         => 2,
+                        'schoolName'    => '2社會大學',
+                        'majorName'     => '2資訊管理',
+                        'majorCat'      => '2商管學科類',
+                        'area'          => '2亞洲',
+                        'schoolCountry' => '2台灣',
+                        'startDate'     => '2013/9',
+                        'endDate'       => '2015/6',
+                        'degreeStatus'  => 1
+                    ]
+                ]
+            ];
+        }
+        else
+        {
+            $res = ['result' =>
+                [
+                    'uid'           => $uid,
+                    'eduid'         => $eduid,
+                    'schoolName'    => '社會大學',
+                    'majorName'     => '資訊管理',
+                    'majorCat'      => '商管學科類',
+                    'area'          => '亞洲',
+                    'schoolCountry' => '台灣',
+                    'startDate'     => '2013/9',
+                    'endDate'       => '2015/6',
+                    'degreeStatus'  => 1
+                ]
+            ];
+        }
+
         return $res;
     }
 
