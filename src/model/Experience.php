@@ -8,6 +8,29 @@ class Experience
     {
     }
 
+    public function getDatas($uid)
+    {
+        $res = ['result' =>
+            [
+                'uid'       => $uid,
+                'expid'     => 1,
+                'firmName'  => '1什麼都做公司',
+                'indCatNo'  => '1網際網路類',
+                'jobName'   => '1BE工程師',
+                'areaNo'    => '1亞洲'
+            ],
+            [
+                'uid'       => $uid,
+                'expid'     => 2,
+                'firmName'  => '2什麼都做公司',
+                'indCatNo'  => '2網際網路類',
+                'jobName'   => '2BE工程師',
+                'areaNo'    => '2亞洲'
+            ]
+        ];
+        return $res;
+    }
+
     /**
     *
     *   @param  Number      $uid    UserId
