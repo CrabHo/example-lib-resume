@@ -3,7 +3,7 @@ namespace bigc\resume\data;
 
 use Respect\Validation\Validator as v;
 
-class EducationData extends BasicData
+class ExperienceData extends BasicData
 {
 
     /**
@@ -12,15 +12,11 @@ class EducationData extends BasicData
     protected function initRule()
     {
         $this->validRule['uid']             = v::numeric();
-        $this->validRule['eduid']           = v::numeric();
-        $this->validRule['schoolName']      = v::stringType()->length(1, 32);
-        $this->validRule['majorName']       = v::stringType()->length(1, 32);
-        $this->validRule['majorCat']        = v::stringType()->length(1, 32);
-        $this->validRule['area']            = v::stringType()->length(1, 32);
-        $this->validRule['schoolCountry']   = v::stringType()->length(1, 32);
-        $this->validRule['startDate']       = v::date('Y-m');
-        $this->validRule['endDate']         = v::date('Y-m');
-        $this->validRule['degreeStatus']    = v::intVal()->between(1, 3);
+        $this->validRule['expid']           = v::numeric();
+        $this->validRule['firmName']        = v::stringType()->length(1, 32);
+        $this->validRule['indCatNo']        = v::stringType()->length(1, 32);
+        $this->validRule['jobName']         = v::stringType()->length(1, 32);
+        $this->validRule['areaNo']          = v::stringType()->length(1, 32);
     }
 
     /**
@@ -28,47 +24,35 @@ class EducationData extends BasicData
      */
     protected function initMessage()
     {
-        $this->validMessage['uid']              = 'uid must only contain numeric.';
-        $this->validMessage['eduid']            = 'eduid must only contain numeric.';
-        $this->validMessage['schoolName']       = 'schoolName must only string and length between 1 and 32.';
-        $this->validMessage['majorName']        = 'majorName must only string and length between 1 and 32.';
-        $this->validMessage['majorCat']         = 'majorCat must only string and length between 1 and 32.';
-        $this->validMessage['area']             = 'area must only string and length between 1 and 32.';
-        $this->validMessage['schoolCountry']    = 'schoolCountry must only string and length between 1 and 32.';
-        $this->validMessage['startDate']        = 'startDate must be a date and format Y-m.';
-        $this->validMessage['endDate']          = 'endDate must be a date and format Y-m.';
-        $this->validMessage['degreeStatus']     = 'degreeStatus must only contain numeric and length between 1 and 3.';
+        $this->validMessage['uid']      = 'uid must only contain numeric.';
+        $this->validMessage['expid']    = 'expid must only contain numeric.';
+        $this->validMessage['firmName'] = 'firmName must only string and length between 1 and 32.';
+        $this->validMessage['indCatNo'] = 'indCatNo must only string and length between 1 and 32.';
+        $this->validMessage['jobName']  = 'jobName must only string and length between 1 and 32.';
+        $this->validMessage['areaNo']   = 'areaNo must only string and length between 1 and 32.';
     }
 
     /**
      *  Generator a education data object
      *
      *  @param      int         $uid            User id
-     *  @param      int         $eduid          EduId, it can be null
-     *  @param      string      $schoolName     School name
-     *  @param      string      $majorName      majorName
-     *  @param      string      $majorCat       majorCat
-     *  @param      string      $area           area
-     *  @param      string      $schoolCountry  schoolCountry
-     *  @param      date        $startDate      startDate
-     *  @param      date        $endDate        endDate
-     *  @param      int         $degreeStatus   degreeStatus
+     *  @param      int         $expid          Expid, it can be null
+     *  @param      string      $firmName       firmName
+     *  @param      string      $indCatNo       indCatNo
+     *  @param      string      $jobName        jobName
+     *  @param      string      $areaNo         areaNo
      *  @throws     \InvalidArgumentException
      *
      */
-    public static function makeEducation(
+    public static function makeExperience(
         $uid,
-        $eduid,
-        $schoolName,
-        $majorName,
-        $majorCat,
-        $area,
-        $schoolCountry,
-        $startDate,
-        $endDate,
-        $degreeStatus
+        $expid,
+        $firmName,
+        $indCatNo,
+        $jobName,
+        $areaNo
     ) {
-        $dataObject = new EducationData;
+        $dataObject = new ExperienceData;
         $dataObject->setUid($uid);
         $dataObject->setEduId($eduid);
         $dataObject->setSchoolName($schoolName);
@@ -105,7 +89,7 @@ class EducationData extends BasicData
         $this->validation("majorName", $this->getMajorName());
         $this->validation("majorCat", $this->getMajorCat());
         $this->validation("area", $this->getArea());
-        $this->validation("schoolCountry", $this->getSchoolCountry());
+        $this->validation("schoolCountry" $this->getSchoolCountry());
         $this->validation("startDate", $this->getStartDate());
         $this->validation("endDate", $this->getEndDate());
         $this->validation("degreeStatus", $this->getDegreeStatus());
@@ -121,24 +105,24 @@ class EducationData extends BasicData
         return $this->uid;
     }
 
-    private $eduid;
-    public function setEduId($eduid)
+    private $expid;
+    public function setExpId($expid)
     {
-        $this->eduid = $eduid;
+        $this->expid = $expid;
     }
-    public function getEduId()
+    public function getExpId()
     {
-        return $this->eduid;
+        return $this->expid;
     }
 
-    private $schoolName;
-    public function setSchoolName($schoolName)
+    private $firmName;
+    public function setFirmName($firmName)
     {
-        $this->schoolName = $schoolName;
+        $this->firmName = $firmName;
     }
-    public function getSchoolName()
+    public function getFirmName()
     {
-        return $this->schoolName;
+        return $this->firmName;
     }
 
     private $majorName;

@@ -1,114 +1,126 @@
 <?php
 namespace bigc\resume\model;
 
+use Cascade\Cascade;
+use bigc\resume\data\EducationData;
+
 class Education
 {
-
-    public function __construct()
+    
+    /**
+    *   Get data array of education
+    *   @param  Number          $uid    UserId
+    *   @return Array
+    *   @throws Exception
+    */
+    public function getDatas($uid)
     {
+        $valid = new EducationData;
+        $valid->validation("uid", $uid);
+
+        $eduData1 = EducationData::makeEducation(
+            $uid,
+            1,
+            '1社會大學',
+            '1資訊管理',
+            '1商管學科類',
+            '1亞洲',
+            '1台灣',
+            '2013-09',
+            '2015-06',
+            1
+        );
+        $eduData2 = EducationData::makeEducation(
+            $uid,
+            2,
+            '2社會大學',
+            '2資訊管理',
+            '2商管學科類',
+            '2亞洲',
+            '2台灣',
+            '2013-09',
+            '2015-06',
+            2
+        );
+
+        return [$eduData1, $eduData2];
     }
 
     /**
-    *
-    *   @param  Number      $uid    UserId
-    *   @param  Number      $eduid  Edu Id
-    *   @return Array
+    *   Get education data
+    *   @param  Number          $uid    UserId
+    *   @param  Number          $eduid  Edu Id
+    *   @return EducationData
     *   @throws Exception
     */
     public function getData($uid, $eduid)
     {
-        if(empty($eduid))
-        {
-            $res = ['result' =>
-                [
-                    [
-                        'uid'           => $uid,
-                        'eduid'         => 1,
-                        'schoolName'    => '1社會大學',
-                        'majorName'     => '1資訊管理',
-                        'majorCat'      => '1商管學科類',
-                        'area'          => '1亞洲',
-                        'schoolCountry' => '1台灣',
-                        'startDate'     => '2013/9',
-                        'endDate'       => '2015/6',
-                        'degreeStatus'  => 1
-                    ],
-                    [
-                        'uid'           => $uid,
-                        'eduid'         => 2,
-                        'schoolName'    => '2社會大學',
-                        'majorName'     => '2資訊管理',
-                        'majorCat'      => '2商管學科類',
-                        'area'          => '2亞洲',
-                        'schoolCountry' => '2台灣',
-                        'startDate'     => '2013/9',
-                        'endDate'       => '2015/6',
-                        'degreeStatus'  => 1
-                    ]
-                ]
-            ];
-        }
-        else
-        {
-            $res = ['result' =>
-                [
-                    'uid'           => $uid,
-                    'eduid'         => $eduid,
-                    'schoolName'    => '社會大學',
-                    'majorName'     => '資訊管理',
-                    'majorCat'      => '商管學科類',
-                    'area'          => '亞洲',
-                    'schoolCountry' => '台灣',
-                    'startDate'     => '2013/9',
-                    'endDate'       => '2015/6',
-                    'degreeStatus'  => 1
-                ]
-            ];
-        }
+        $valid = new EducationData;
+        $valid->validation("uid", $uid);
+        $valid->validation("eduid", $eduid);
 
-        return $res;
+        //Query database
+        $eduData = EducationData::makeEducation(
+            $uid,
+            $eduid,
+            '1社會大學',
+            '1資訊管理',
+            '1商管學科類',
+            '1亞洲',
+            '1台灣',
+            '2013-09',
+            '2015-06',
+            1
+        );
+
+        return $eduData;
     }
 
     /**
-    *
-    *
-    *   @param      Number      $uid    UserId
-    *   @param      Number      $eduid  Edu Id
-    *   @param      Array       $data
+    *   Update EducationData
+    *   @param      EducationData   $data
     *   @return     Boolean
     *   @throws     Exception
     */
-    public function updateData($id, $uid, $data)
+    public function updateData($data)
     {
-        //Update DB
-        $res = ['result' => true];
-        return $res;
+        //Check data is correct
+        $data->checkData(false);
+
+        //Update database
+
+        return true;
     }
 
     /**
-    *
-    *   @param      Number      $uid    UserId
-    *   @param      Number      $eduid  Edu Id
+    *   Delete EducationData
+    *   @param      EducationData   $data
     *   @return     Boolean
     *   @throws     Exception
     */
-    public function deleteData($id, $uid)
+    public function deleteData($uid, $eduid)
     {
-        $res = ['result' => true];
-        return $res;
+        $valid = new EducationData;
+        $valid->validation("uid", $uid);
+        $valid->validation("eduid", $eduid);
+        //Delete database
+
+        return true;
     }
 
     /**
-    *
-    *
-    *   @param      Number      $uid    UserId
+    *   Add EducationData
+    *   @param      EducationData   $data
     *   @return     Boolean
     *   @throws     Exception
     */
-    public function addData($id, $data)
+    public function addData($data)
     {
-        //Add DB
-        $res = ['result' => true];
-        return $res;
+        //Check data
+        $data->checkData(true);
+
+        //Insert database
+        
+        return true;
     }
 }

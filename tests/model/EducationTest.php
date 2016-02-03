@@ -1,6 +1,7 @@
 <?php
 namespace bigc\resume\model;
 
+use bigc\resume\data\EducationData;
 use PHPUnit_Framework_TestCase;
 
 class EducationTest extends PHPUnit_Framework_TestCase
@@ -10,11 +11,15 @@ class EducationTest extends PHPUnit_Framework_TestCase
     {
         $obj = new Education();
         
-        //test normal case
-        $this->assertEquals(
-            $obj->getData('123', '456'),
-            $this->getData()
-        );
+        $obj->getData(12, 34);
+        $obj->getDatas(12);
+        //Test exception
+        $this->setExpectedException('\InvalidArgumentException', "uid must only contain numeric.");
+        $obj->getDatas(null);
+        $obj->getData(null, 34);
+        
+        $this->setExpectedException('\InvalidArgumentException', "eduid must only contain numeric.");
+        $obj->getData(12, "abc");
     }
 
     public function testDeleteData()
@@ -24,68 +29,92 @@ class EducationTest extends PHPUnit_Framework_TestCase
         //test normal case
         $this->assertEquals(
             $obj->deleteData(123, 456),
-            ['result' => true]
+            true
         );
+
+        //Test exception
+        $this->setExpectedException('\InvalidArgumentException', "uid must only contain numeric.");
+        $obj->getData(null, 34);
+        $this->setExpectedException('\InvalidArgumentException', "eduid must only contain numeric.");
+        $obj->getData(12, "abc");
     }
 
     public function testAddData()
     {
-        $data = [
-            'schoolName'    => '社會大學',
-            'majorName'     => '資訊管理',
-            'majorCat'      => '商管學科類',
-            'area'          => '亞洲',
-            'schoolCountry' => '台灣',
-            'startDate'     => '2013/9',
-            'endDate'       => '2015/6',
-            'degreeStatus'  => 1
-        ];
-        $obj = new Education;
+        $eduData = EducationData::makeEducation(
+            12,
+            null,
+            '1社會大學',
+            '1資訊管理',
+            '1商管學科類',
+            '1亞洲',
+            '1台灣',
+            '2013-09',
+            '2015-06',
+            1
+        );
 
         //test normal case
+        $obj = new Education();
         $this->assertEquals(
-            $obj->addData(123, $data),
-            ['result' => true]
+            $obj->addData($eduData),
+            true
         );
     }
 
     public function testUpdateData()
     {
-        $data = [
-            'schoolName'    => '社會大學',
-            'majorName'     => '資訊管理',
-            'majorCat'      => '商管學科類',
-            'area'          => '亞洲',
-            'schoolCountry' => '台灣',
-            'startDate'     => '2013/9',
-            'endDate'       => '2015/6',
-            'degreeStatus'  => 1
-        ];
-        $obj = new Education;
-
         //test normal case
-        $this->assertEquals(
-            $obj->updateData(123, 456, $data),
-            ['result' => true]
+        $eduData = EducationData::makeEducation(
+            12,
+            34,
+            '1社會大學',
+            '1資訊管理',
+            '1商管學科類',
+            '1亞洲',
+            '1台灣',
+            '2013-09',
+            '2015-06',
+            1
         );
+
+        $obj = new Education();
+        $this->assertEquals(
+            $obj->updateData($eduData),
+            true
+        );
+
+        //test exception case
+        $eduData = EducationData::makeEducation(
+            12,
+            null,
+            '1社會大學',
+            '1資訊管理',
+            '1商管學科類',
+            '1亞洲',
+            '1台灣',
+            '2013-09',
+            '2015-06',
+            1
+        );
+        $this->setExpectedException('\InvalidArgumentException', "eduid must only contain numeric.");
+        $obj->updateData($eduData);
     }
 
     private function getData()
     {
-        $res = ['result' =>
-            [
-                'uid'           => '123',
-                'eduid'         => 456,
-                'schoolName'    => '社會大學',
-                'majorName'     => '資訊管理',
-                'majorCat'      => '商管學科類',
-                'area'          => '亞洲',
-                'schoolCountry' => '台灣',
-                'startDate'     => '2013/9',
-                'endDate'       => '2015/6',
-                'degreeStatus'  => 1
-            ]
-        ];
-        return $res;
+        $eduData = EducationData::makeEducation(
+            12,
+            34,
+            '1社會大學',
+            '1資訊管理',
+            '1商管學科類',
+            '1亞洲',
+            '1台灣',
+            '2013-09',
+            '2015-06',
+            1
+        );
+        return $eduData;
     }
 }
