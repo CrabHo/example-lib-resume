@@ -94,7 +94,8 @@ class Education
 
     /**
     *   Delete EducationData
-    *   @param      EducationData   $data
+    *   @param      Number          $uid    UserId
+    *   @param      Number          $eduid  Edu Id
     *   @return     Boolean
     *   @throws     Exception
     */

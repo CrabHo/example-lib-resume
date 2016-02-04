@@ -1,99 +1,119 @@
 <?php
 namespace bigc\resume\model;
 
+use Cascade\Cascade;
+use bigc\resume\data\ExperienceData;
+
 class Experience
 {
-
-    public function __construct()
+    
+    /**
+    *   Get data array of Experience
+    *   @param  Number          $uid    UserId
+    *   @return Array
+    *   @throws Exception
+    */
+    public function getDatas($uid)
     {
+        $valid = new ExperienceData;
+        $valid->validation("uid", $uid);
+
+        $expData1 = ExperienceData::makeExperience(
+            $uid,
+            1,
+            '1什麼都做公司',
+            '1網際網路類',
+            '1BE工程師',
+            '1亞洲'
+        );
+        $expData2 = ExperienceData::makeExperience(
+            $uid,
+            2,
+            '2什麼都做公司',
+            '2網際網路類',
+            '2BE工程師',
+            '2亞洲'
+        );
+
+        return [$expData1, $expData2];
     }
 
     /**
-    *
-    *   @param  Number      $uid    UserId
-    *   @param  Number      $expid  Exp Id
-    *   @return Array
+    *   Get Experience data
+    *   @param  Number          $uid    UserId
+    *   @param  Number          $expid  Exp Id
+    *   @return ExperienceData
     *   @throws Exception
     */
     public function getData($uid, $expid)
     {
-        if(empty($expid))
-        {
-            $res = ['result' =>
-                [
-                    'uid'       => $uid,
-                    'expid'     => 1,
-                    'firmName'  => '1什麼都做公司',
-                    'indCatNo'  => '1網際網路類',
-                    'jobName'   => '1BE工程師',
-                    'areaNo'    => '1亞洲'
-                ],
-                [
-                    'uid'       => $uid,
-                    'expid'     => 2,
-                    'firmName'  => '2什麼都做公司',
-                    'indCatNo'  => '2網際網路類',
-                    'jobName'   => '2BE工程師',
-                    'areaNo'    => '2亞洲'
-                ]
-            ];
-        }
-        else
-        {
-            $res = ['result' =>
-                [
-                    'uid'       => $uid,
-                    'expid'     => $expid,
-                    'firmName'  => '什麼都做公司',
-                    'indCatNo'  => '網際網路類',
-                    'jobName'   => 'BE工程師',
-                    'areaNo'    => '亞洲'
-                ]
-            ];
-        }
-        return $res;
+        $valid = new ExperienceData;
+        $valid->validation("uid", $uid);
+        $valid->validation("expid", $expid);
+
+        //Query database
+        $expData = ExperienceData::makeExperience(
+            $uid,
+            $expid,
+            '1社會大學',
+            '1資訊管理',
+            '1商管學科類',
+            '1亞洲',
+            '1台灣',
+            '2013-09',
+            '2015-06',
+            1
+        );
+
+        return $expData;
     }
 
     /**
-    *
-    *
-    *   @param      Number      $uid    UserId
-    *   @param      Number      $expid  Exp Id
-    *   @param      Array       $data
+    *   Update ExperienceData
+    *   @param      ExperienceData   $data
     *   @return     Boolean
     *   @throws     Exception
     */
-    public function updateData($id, $expid, $data)
+    public function updateData($data)
     {
-        //Update DB
-        $res = ['result' => true];
-        return $res;
+        //Check data is correct
+        $data->checkData(false);
+
+        //Update database
+
+        return true;
     }
 
     /**
-    *
-    *   @param      Number      $uid    UserId
-    *   @param      Number      $expid  Exp Id
+    *   Delete ExperienceData
+    *   @param      Number          $uid    UserId
+    *   @param      Number          $expid  Exp Id
     *   @return     Boolean
     *   @throws     Exception
     */
-    public function deleteData($id, $expid)
+    public function deleteData($uid, $expid)
     {
-        $res = ['result' => true];
-        return $res;
+        $valid = new ExperienceData;
+        $valid->validation("uid", $uid);
+        $valid->validation("expid", $expid);
+        //Delete database
+
+        return true;
     }
 
     /**
-    *
-    *
-    *   @param      Number      $uid    UserId
+    *   Add ExperienceData
+    *   @param      ExperienceData   $data
     *   @return     Boolean
     *   @throws     Exception
     */
-    public function addData($id, $data)
+    public function addData($data)
     {
-        //Add DB
-        $res = ['result' => true];
-        return $res;
+        //Check data
+        $data->checkData(true);
+
+        //Insert database
+        
+        return true;
     }
 }

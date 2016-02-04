@@ -54,17 +54,13 @@ class ExperienceData extends BasicData
     ) {
         $dataObject = new ExperienceData;
         $dataObject->setUid($uid);
-        $dataObject->setEduId($eduid);
-        $dataObject->setSchoolName($schoolName);
-        $dataObject->setMajorName($majorName);
-        $dataObject->setMajorCat($majorCat);
-        $dataObject->setArea($area);
-        $dataObject->setSchoolCountry($schoolCountry);
-        $dataObject->setStartDate($startDate);
-        $dataObject->setEndDate($endDate);
-        $dataObject->setDegreeStatus($degreeStatus);
+        $dataObject->setExpid($expid);
+        $dataObject->setFirmName($firmName);
+        $dataObject->setIndCatNo($indCatNo);
+        $dataObject->setJobName($jobName);
+        $dataObject->setAreaNo($areaNo);
 
-        if ($dataObject->getEduId() === null) {
+        if ($dataObject->getExpId() === null) {
             $dataObject->checkData(true);
         } else {
             $dataObject->checkData(false);
@@ -83,16 +79,12 @@ class ExperienceData extends BasicData
     {
         $this->validation("uid", $this->getUid());
         if (!$flag) {
-            $this->validation("eduid", $this->getEduId());
+            $this->validation("expid", $this->getExpId());
         }
-        $this->validation("schoolName", $this->getSchoolName());
-        $this->validation("majorName", $this->getMajorName());
-        $this->validation("majorCat", $this->getMajorCat());
-        $this->validation("area", $this->getArea());
-        $this->validation("schoolCountry" $this->getSchoolCountry());
-        $this->validation("startDate", $this->getStartDate());
-        $this->validation("endDate", $this->getEndDate());
-        $this->validation("degreeStatus", $this->getDegreeStatus());
+        $this->validation("firmName", $this->getFirmName());
+        $this->validation("indCatNo", $this->getIndCatNo());
+        $this->validation("jobName", $this->getJobName());
+        $this->validation("areaNo", $this->getAreaNo());
     }
 
     private $uid;
@@ -125,73 +117,33 @@ class ExperienceData extends BasicData
         return $this->firmName;
     }
 
-    private $majorName;
-    public function setMajorName($majorName)
+    private $indCatNo;
+    public function setIndCatNo($indCatNo)
     {
-        $this->majorName = $majorName;
+        $this->indCatNo = $indCatNo;
     }
-    public function getMajorName()
+    public function getIndCatNo()
     {
-        return $this->majorName;
-    }
-
-    private $majorCat;
-    public function setMajorCat($majorCat)
-    {
-        $this->majorCat = $majorCat;
-    }
-    public function getMajorCat()
-    {
-        return $this->majorCat;
+        return $this->indCatNo;
     }
 
-    private $area;
-    public function setArea($area)
+    private $jobName;
+    public function setJobName($jobName)
     {
-        $this->area = $area;
+        $this->jobName = $jobName;
     }
-    public function getArea()
+    public function getJobName()
     {
-        return $this->area;
-    }
-
-    private $schoolCountry;
-    public function setSchoolCountry($schoolCountry)
-    {
-        $this->schoolCountry = $schoolCountry;
-    }
-    public function getSchoolCountry()
-    {
-        return $this->schoolCountry;
+        return $this->jobName;
     }
 
-    private $startDate;
-    public function setStartDate($startDate)
+    private $areaNo;
+    public function setAreaNo($areaNo)
     {
-        $this->startDate = $startDate;
+        $this->areaNo = $areaNo;
     }
-    public function getStartDate()
+    public function getAreaNo()
     {
-        return $this->startDate;
-    }
-
-    private $endDate;
-    public function setEndDate($endDate)
-    {
-        $this->endDate = $endDate;
-    }
-    public function getEndDate()
-    {
-        return $this->endDate;
-    }
-
-    private $degreeStatus;
-    public function setDegreeStatus($degreeStatus)
-    {
-        $this->degreeStatus = $degreeStatus;
-    }
-    public function getDegreeStatus()
-    {
-        return $this->degreeStatus;
+        return $this->areaNo;
     }
 }
